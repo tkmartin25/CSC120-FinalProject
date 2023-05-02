@@ -5,7 +5,12 @@ public class Room {
     int length;
     int floor;
 
-    /* Default constructor */
+    /* Default constructor
+     * @param name
+     * @param width
+     * @param length
+     * @param floor
+     */
     public Room(String name, int width, int length, int floor) {
         this.name = name;
         this.width = width;
