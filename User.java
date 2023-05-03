@@ -26,6 +26,9 @@ public class User {
     /** y coordinate of house where character is located */
     int house_y;
 
+    /** which floor the user is on */
+    int floor;
+
     /** x coordinate of character in terms of the room's coordinates */
     // should be automatically calculated based on house coordinates
     int room_x;
@@ -43,6 +46,7 @@ public class User {
         this.current_energy = this.max_energy;
         this.house_x = -1;
         this.house_y = -1;
+        this.floor = -1;
     }
 
     /** function for entering Haunted House */
@@ -50,6 +54,7 @@ public class User {
         if (this.house_x < 0 || this.house_y < 0) {
             this.house_x = 160;
             this.house_y = 1;
+            this.floor = 1;
             System.out.println("You have entered the Haunted House.");
         }
         else {
@@ -64,13 +69,14 @@ public class User {
     public void go(String direction){
         direction = direction.toLowerCase();
         if (direction == "up") {
-            if (this.checkLocation() == "Foyer") {
+            if (this.Locate() == "Foyer") {
+                this.floor = 2;
                 this.house_x = 195;
                 this.house_y = 90;
                 System.out.println("You walked up the stairs to the second floor.");
             }
             else {
-                System.out.println("You can't go upstairs from this room.");
+                System.out.println("You can't go up from here.");
             }
         }
        // if (direction == "") {
@@ -88,9 +94,9 @@ public class User {
     //         this.x = x + 1;
     //         return true;
     //     }
-    //     else {
-    //         throw new RuntimeException("Error: You must input one of the following four directions: 'north', 'south', 'west', or 'east'.");
-    //     }
+        else {
+            throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
+        }
     }
 
 
@@ -103,15 +109,27 @@ public class User {
         System.out.println(this.name + " is at (" + this.house_x + ", " + this.house_y + ").");
     }
 
-    public String checkLocation() {
+    public String Locate() {
         if (this.house_x < 0 || this.house_y < 0) {
-            System.out.println("You are outside the Haunted House. Enter the Haunted House to play.");
             return("Haunted House");
         }
-        elseif (this.house_x > 120 && this.house_x < 200 && this.house_y <)
+        else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
+            return("Foyer");
+        }
+        else {
+            return("Inside Haunted House.");
+        }
+    }
+
+    public void checkLocation() {
+        if (this.house_x < 0 || this.house_y < 0) {
+            System.out.println("You are outside the Haunted House. Enter the Haunted House to play.");
+        }
+        else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
+            System.out.println("You are inside the Foyer."); 
+        }
         else {
             System.out.println("You are somewhere inside the house.");
-            return("Inside Haunted House.");
         }
     }
 
@@ -164,11 +182,15 @@ public class User {
 
     /** for testing */
     public static void main(String[] args) {
+        Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         User User = new User("Babby");
         User.checkCoordinates();
+        User.go("up");
         User.enter();
         User.checkCoordinates();
         User.checkLocation();
+        User.go("up");
+        User.checkCoordinates();
         User.go("up");
      }
 

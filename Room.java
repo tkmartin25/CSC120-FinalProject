@@ -28,7 +28,7 @@ public class Room {
 
     /** for testing */
     public static void main(String[] args) {
-       Room Foyer = new Room("Foyer", 80, 100, 1);
+        public static Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
     }
 
 }
