@@ -92,3 +92,10 @@ public class Character {
         System.out.println(this.name + " rested for " + hours + " hours.");
     }
 
+    /**
+     * character rests, affecting their energy level
+     */
+    public void drink(potion){
+        System.out.println(this.name + " drank " + potion + ".");
+    }
+
