@@ -79,11 +79,26 @@ public class User {
                 System.out.println("You can't go up from here.");
             }
         }
-       // if (direction == "") {
-    //         System.out.println("You walked south.");
-    //         this.y = y - 1;
-    //         return true;
-    //     }
+        else if (direction == "left") {
+            if (this.Locate() == "Foyer") {
+                this.house_x = 115;
+                this.house_y = 10;
+                System.out.println("You are now in the living room.");
+            }
+            else {
+                System.out.println("You can't go to the left from here.");
+            }
+        }
+        else if (direction == "right") {
+            if (this.Locate() == "Living Room") {
+                this.house_x = 125;
+                this.house_y = 10;
+                System.out.println("You are now in the foyer.");
+            }
+            else {
+                System.out.println("You can't go to the right from here.");
+            }
+        }
     //     if (direction == "west") {
     //         System.out.println("You walked west.");
     //         this.x = x - 1;
@@ -113,8 +128,16 @@ public class User {
         if (this.house_x < 0 || this.house_y < 0) {
             return("Haunted House");
         }
-        else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
-            return("Foyer");
+        else if (this.floor == 1) {
+            if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100) {
+                return("Foyer");
+            }
+            else if (this.house_x > 0 && this.house_x < 120 && this.house_y > 0 && this.house_y < 150) {
+                return("Living Room");
+            }
+            else {
+                return("First floor--somewhere.");
+            }
         }
         else {
             return("Inside Haunted House.");
@@ -183,14 +206,17 @@ public class User {
     /** for testing */
     public static void main(String[] args) {
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
+        Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         User User = new User("Babby");
         User.checkCoordinates();
         User.go("up");
         User.enter();
         User.checkCoordinates();
-        User.checkLocation();
+        //User.checkLocation();
+        User.go("left");
         User.go("up");
         User.checkCoordinates();
+        User.go("right");
         User.go("up");
      }
 
