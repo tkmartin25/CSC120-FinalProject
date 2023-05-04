@@ -36,6 +36,8 @@ public class User {
 
     ArrayList<String> notebook;
 
+    ArrayList<String> tracker;
+
     String note;
 
     /** x coordinate of character in terms of the room's coordinates */
@@ -59,6 +61,7 @@ public class User {
         this.house_y = -1;
         this.floor = -1;
         this.notebook = new ArrayList<String>();
+        this.tracker = new ArrayList<String>();
     }
 
     /** function for entering Haunted House */
@@ -74,11 +77,24 @@ public class User {
         }
     }
 
+    private void track() {
+        if (!this.tracker.contains(this.Locate())) {
+            this.tracker.add(this.Locate());
+        }
+    }
+
+    public void checkTracker() {
+        for(int i = 0; i < this.tracker.size(); i++){
+            System.out.println(this.tracker.get(i));
+        }
+    }
+
     /**
     * based on the direction north, south, east, or west, the bat moves coordinates by a unit of 1
     * @param direction for bat to walk in
     */
     public void go(String direction){
+        track();
         direction = direction.toLowerCase();
         if (direction == "up") {
             if (this.Locate() == "Foyer") {
@@ -102,6 +118,11 @@ public class User {
                 this.house_y = 10;
                 System.out.println("You are now in the foyer.");
             }
+            else if (this.Locate() == "Kitchen") {
+                this.house_x = 195;
+                this.house_y = 140;
+                System.out.println("You are now in the closet.");
+            }
             else {
                 System.out.println("You can't go to the left from here.");
             }
@@ -121,11 +142,16 @@ public class User {
                 System.out.println("You can't go to the right from here.");
             }
         }
-    //     if (direction == "west") {
-    //         System.out.println("You walked west.");
-    //         this.x = x - 1;
-    //         return true;
-    //     }
+        else if (direction == "w") {
+            if (this.Locate() == "Dining Room") {
+                this.house_x = 250;
+                this.house_y = 70;
+                System.out.println("You are now in the kitchen.");
+            }
+            else {
+                System.out.println("You can't go towards the back of the house from here.");
+            }
+        }
     //     if (direction == "east") {
     //         System.out.println("You walked east.");
     //         this.x = x + 1;
@@ -188,7 +214,7 @@ public class User {
      */
     public String Locate() {
         if (this.house_x < 0 || this.house_y < 0) {
-            return("Haunted House");
+            return("Outside");
         }
         else if (this.floor == 1) {
             if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100) {
@@ -199,6 +225,9 @@ public class User {
             }
             else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 0 && this.house_y < 60) {
                 return("Dining Room");
+            }
+            else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 60 && this.house_y < 150) {
+                return("Kitchen");
             }
             else {
                 return("First floor--somewhere.");
@@ -273,7 +302,9 @@ public class User {
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
-        User User = new User("Babby");
+        Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1);
+        Room Bathroom = new Room("Bathroom", 50, 50, 250, 300, 150, 200, 1);
+        Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1);
         User.checkCoordinates();
         User.go("up");
         User.enter();
@@ -285,9 +316,7 @@ public class User {
         User.go("d");
         User.go("d");
         User.go("up");
-        User.write();
-        User.read(2);
-        User.read(1);
+        User.checkTracker();
      }
 
     }
