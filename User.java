@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
 
@@ -29,11 +31,20 @@ public class User {
     /** which floor the user is on */
     int floor;
 
+    /** stores which items user possesses */
+    ArrayList<Item> items;
+
+    ArrayList<String> notebook;
+
+    String note;
+
     /** x coordinate of character in terms of the room's coordinates */
     // should be automatically calculated based on house coordinates
     int room_x;
     /** y coordinate of character in terms of the room's coordinates */
     int room_y;
+
+
 
     
 
@@ -47,6 +58,7 @@ public class User {
         this.house_x = -1;
         this.house_y = -1;
         this.floor = -1;
+        this.notebook = new ArrayList<String>();
     }
 
     /** function for entering Haunted House */
@@ -124,16 +136,56 @@ public class User {
         }
     }
 
+    /**
+     * allows user to write in their notebook
+     */
+    public void write(){
+        Scanner userInput = new Scanner(System.in); 
+        System.out.println("Would you like to write in the notebook? You have " + (5 - notebook.size()) + " page(s) remaining. (Y/N)");
+        String userChoice = userInput.nextLine();
+        if (userChoice.equals("Y")) {
+            Scanner userNote = new Scanner(System.in); 
+            System.out.println("Write your note for page " + (notebook.size() + 1) + ".");
+            String note = userNote.nextLine();
+            notebook.add(note);
+        }
+        else if (userChoice.equals("N")) {
+            System.out.println("You decided not to write in the notebook.");
+        }
+        else {
+            System.out.println(userChoice);
+            throw new RuntimeException("Invalid response.");
+        }
+    }
 
-
-    public void use(String item){
+    /**
+     * allows user to read notes that they wrote in their notebook
+     * @param pagenum page number of notebook to be read
+     */
+    public void read(int pagenum) {
+        if (pagenum <= notebook.size()) {
+            System.out.println("On page " + pagenum + ", you wrote:\n" + notebook.get(pagenum - 1));
+        }
+        else {
+            System.out.println("Page " + pagenum + " is blank.");
+        }
 
     }
 
+
+    //public void use(String item){}
+
+    /**
+     * allows user to check what coordinates they are at
+     */
     public void checkCoordinates() {
         System.out.println(this.name + " is at (" + this.house_x + ", " + this.house_y + ").");
     }
 
+    /**
+     * locates user in terms of which room they are in in the house
+     * @return name of room that the user is currently in
+     */
     public String Locate() {
         if (this.house_x < 0 || this.house_y < 0) {
             return("Haunted House");
@@ -233,6 +285,9 @@ public class User {
         User.go("right");
         User.go("right");
         User.go("up");
+        User.write();
+        User.read(2);
+        User.read(1);
      }
 
     }
