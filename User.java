@@ -85,6 +85,11 @@ public class User {
                 this.house_y = 10;
                 System.out.println("You are now in the living room.");
             }
+            else if (this.Locate() == "Dining Room") {
+                this.house_x = 195;
+                this.house_y = 10;
+                System.out.println("You are now in the foyer.");
+            }
             else {
                 System.out.println("You can't go to the left from here.");
             }
@@ -94,6 +99,11 @@ public class User {
                 this.house_x = 125;
                 this.house_y = 10;
                 System.out.println("You are now in the foyer.");
+            }
+            else if (this.Locate() == "Foyer") {
+                this.house_x = 205;
+                this.house_y = 10;
+                System.out.println("You are now in the dining room.");
             }
             else {
                 System.out.println("You can't go to the right from here.");
@@ -135,6 +145,9 @@ public class User {
             else if (this.house_x > 0 && this.house_x < 120 && this.house_y > 0 && this.house_y < 150) {
                 return("Living Room");
             }
+            else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 0 && this.house_y < 60) {
+                return("Dining Room");
+            }
             else {
                 return("First floor--somewhere.");
             }
@@ -144,17 +157,17 @@ public class User {
         }
     }
 
-    public void checkLocation() {
-        if (this.house_x < 0 || this.house_y < 0) {
-            System.out.println("You are outside the Haunted House. Enter the Haunted House to play.");
-        }
-        else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
-            System.out.println("You are inside the Foyer."); 
-        }
-        else {
-            System.out.println("You are somewhere inside the house.");
-        }
-    }
+    // public void checkLocation() {
+    //     if (this.house_x < 0 || this.house_y < 0) {
+    //         System.out.println("You are outside the Haunted House. Enter the Haunted House to play.");
+    //     }
+    //     else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
+    //         System.out.println("You are inside the Foyer."); 
+    //     }
+    //     else {
+    //         System.out.println("You are somewhere inside the house.");
+    //     }
+    // }
 
     /**
      * decreases character's size
@@ -207,6 +220,7 @@ public class User {
     public static void main(String[] args) {
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
+        Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
         User User = new User("Babby");
         User.checkCoordinates();
         User.go("up");
@@ -216,6 +230,7 @@ public class User {
         User.go("left");
         User.go("up");
         User.checkCoordinates();
+        User.go("right");
         User.go("right");
         User.go("up");
      }
