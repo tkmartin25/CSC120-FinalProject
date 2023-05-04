@@ -91,7 +91,7 @@ public class User {
                 System.out.println("You can't go up from here.");
             }
         }
-        else if (direction == "left") {
+        else if (direction == "a") {
             if (this.Locate() == "Foyer") {
                 this.house_x = 115;
                 this.house_y = 10;
@@ -106,7 +106,7 @@ public class User {
                 System.out.println("You can't go to the left from here.");
             }
         }
-        else if (direction == "right") {
+        else if (direction == "d") {
             if (this.Locate() == "Living Room") {
                 this.house_x = 125;
                 this.house_y = 10;
@@ -279,11 +279,11 @@ public class User {
         User.enter();
         User.checkCoordinates();
         //User.checkLocation();
-        User.go("left");
+        User.go("a");
         User.go("up");
         User.checkCoordinates();
-        User.go("right");
-        User.go("right");
+        User.go("d");
+        User.go("d");
         User.go("up");
         User.write();
         User.read(2);
