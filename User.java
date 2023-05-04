@@ -64,7 +64,9 @@ public class User {
         this.tracker = new ArrayList<String>();
     }
 
-    /** function for entering Haunted House */
+    /** 
+     * function for entering Haunted House 
+     */
     public void enter(){
         if (this.house_x < 0 || this.house_y < 0) {
             this.house_x = 160;
