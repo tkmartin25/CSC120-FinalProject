@@ -94,8 +94,6 @@ public class User {
     * @param direction for bat to walk in
     */
     public void go(String direction){
-        // update which locations user has been in
-        track();
         // formatting of user inputted direction
         direction = direction.toLowerCase();
         // moving up 1 floor
@@ -169,7 +167,7 @@ public class User {
             }
         }
         // moving "down", towards the front of the house
-        else if (direction == "w") {
+        else if (direction == "s") {
             if (this.Locate() == "Bathroom") {
                 this.house_x = 275;
                 this.house_y = 140;
@@ -181,12 +179,14 @@ public class User {
                 System.out.println("You are now in the dining room.");
             }
             else {
-                System.out.println("You can't go towards the back of the house from here.");
+                System.out.println("You can't go towards the front of the house from here.");
             }
         }
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
+        // update which locations user has been in
+        track();
     }
 
     /**
@@ -332,6 +332,7 @@ public class User {
 
     /** for testing */
     public static void main(String[] args) {
+        User User = new User("Babby");
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
@@ -349,6 +350,10 @@ public class User {
         User.go("d");
         User.go("d");
         User.go("up");
+        User.go("w");
+        User.go("a");
+        User.go("d");
+        User.go("w");
         User.checkTracker();
      }
 
