@@ -94,8 +94,11 @@ public class User {
     * @param direction for bat to walk in
     */
     public void go(String direction){
+        // update which locations user has been in
         track();
+        // formatting of user inputted direction
         direction = direction.toLowerCase();
+        // moving up 1 floor
         if (direction == "up") {
             if (this.Locate() == "Foyer") {
                 this.floor = 2;
@@ -107,6 +110,7 @@ public class User {
                 System.out.println("You can't go up from here.");
             }
         }
+        // moving to the left
         else if (direction == "a") {
             if (this.Locate() == "Foyer") {
                 this.house_x = 115;
@@ -127,6 +131,7 @@ public class User {
                 System.out.println("You can't go to the left from here.");
             }
         }
+        // moving to the right
         else if (direction == "d") {
             if (this.Locate() == "Living Room") {
                 this.house_x = 125;
@@ -138,25 +143,47 @@ public class User {
                 this.house_y = 10;
                 System.out.println("You are now in the dining room.");
             }
+            else if (this.Locate() == "Closet") {
+                this.house_x = 205;
+                this.house_y = 140;
+                System.out.println("You are now in the Kitchen.");
+            }
             else {
                 System.out.println("You can't go to the right from here.");
             }
         }
+        // moving "up", towards the back of the house
         else if (direction == "w") {
             if (this.Locate() == "Dining Room") {
                 this.house_x = 250;
                 this.house_y = 70;
                 System.out.println("You are now in the kitchen.");
             }
+            else if (this.Locate() == "Kitchen") {
+                this.house_x = 275;
+                this.house_y = 160;
+                System.out.println("You are now in the first floor bathroom.");
+            }
             else {
                 System.out.println("You can't go towards the back of the house from here.");
             }
         }
-    //     if (direction == "east") {
-    //         System.out.println("You walked east.");
-    //         this.x = x + 1;
-    //         return true;
-    //     }
+        // moving "down", towards the front of the house
+        else if (direction == "w") {
+            if (this.Locate() == "Bathroom") {
+                this.house_x = 275;
+                this.house_y = 140;
+                System.out.println("You are now in the kitchen.");
+            }
+            else if (this.Locate() == "Kitchen") {
+                this.house_x = 250;
+                this.house_y = 50;
+                System.out.println("You are now in the dining room.");
+            }
+            else {
+                System.out.println("You can't go towards the back of the house from here.");
+            }
+        }
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
