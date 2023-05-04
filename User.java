@@ -229,6 +229,12 @@ public class User {
             else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 60 && this.house_y < 150) {
                 return("Kitchen");
             }
+            else if (this.house_x > 250 && this.house_x < 300 && this.house_y > 150 && this.house_y < 200) {
+                return("Bathroom");
+            }
+            else if (this.house_x > 190 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
+                return("Closet");
+            }
             else {
                 return("First floor--somewhere.");
             }
