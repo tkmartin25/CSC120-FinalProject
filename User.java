@@ -77,12 +77,18 @@ public class User {
         }
     }
 
+    /**
+     * checks if user's current location is in tracker. If not, it adds the location to the tracker.
+     */
     private void track() {
         if (!this.tracker.contains(this.Locate())) {
             this.tracker.add(this.Locate());
         }
     }
 
+    /**
+     * prints out which rooms the user has been in
+     */
     public void checkTracker() {
         for(int i = 0; i < this.tracker.size(); i++){
             System.out.println(this.tracker.get(i));
@@ -185,8 +191,7 @@ public class User {
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
-        // update which locations user has been in
-        track();
+        
     }
 
     /**
@@ -287,41 +292,41 @@ public class User {
      * decreases character's size
      * @return new size after shrinking
      */
-    public Number shrink(){
-        double amountToShrink = 2;
-        if (this.size - amountToShrink > 0) {
-            this.size = this.size - amountToShrink;
-            System.out.println(this.name + " is now this size: " + this.size);
-            return this.size;
-        }
-        else {
-            throw new RuntimeException(this.name + " cannot shrink by that amount.");
-        }
+    // public Number shrink(){
+    //     double amountToShrink = 2;
+    //     if (this.size - amountToShrink > 0) {
+    //         this.size = this.size - amountToShrink;
+    //         System.out.println(this.name + " is now this size: " + this.size);
+    //         return this.size;
+    //     }
+    //     else {
+    //         throw new RuntimeException(this.name + " cannot shrink by that amount.");
+    //     }
         
-    }
+    // }
 
     /**
      * increases character's size
      * @return new size after growing
      */
-    public Number grow(){
-        double amountToGrow = 2;
-        if (this.size + amountToGrow < this.maxSize) {
-            this.size = this.size + amountToGrow;
-            System.out.println(this.name + " is now this size: " + this.size);
-            return this.size;
-        }
-        else {
-            throw new RuntimeException(this.name + " cannot grow by that amount.");
-        }
-    }
+    // public Number grow(){
+    //     double amountToGrow = 2;
+    //     if (this.size + amountToGrow < this.maxSize) {
+    //         this.size = this.size + amountToGrow;
+    //         System.out.println(this.name + " is now this size: " + this.size);
+    //         return this.size;
+    //     }
+    //     else {
+    //         throw new RuntimeException(this.name + " cannot grow by that amount.");
+    //     }
+    // }
 
     /**
      * character rests, affecting their energy level
      */
-    public void rest(int hours){
-        System.out.println(this.name + " rested for " + hours + " hours.");
-    }
+    // public void rest(int hours){
+    //     System.out.println(this.name + " rested for " + hours + " hours.");
+    // }
 
     /**
      * character rests, affecting their energy level
