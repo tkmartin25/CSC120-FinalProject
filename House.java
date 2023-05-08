@@ -15,7 +15,7 @@ public class House {
     }
 
 
-    /** 
+    /**
     * adds an existing room to house
     * @param room to be added to house
     */

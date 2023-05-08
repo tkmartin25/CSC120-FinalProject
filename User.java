@@ -46,10 +46,6 @@ public class User {
     /** y coordinate of character in terms of the room's coordinates */
     int room_y;
 
-
-
-    
-
     /* Default constructor
      * @param name
      */
@@ -109,7 +105,7 @@ public class User {
     }
 
     /**
-     * allows user to see how much energy they have
+     * allows user to see how much energy they have and their max energy
      */
     public void checkEnergy() {
         System.out.println("Your current energy level is " + this.current_energy + ", with a max energy level of " + this.max_energy + ".");
@@ -229,7 +225,6 @@ public class User {
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
-        
     }
 
     /**
@@ -265,9 +260,16 @@ public class User {
         else {
             System.out.println("Page " + pagenum + " is blank.");
         }
-
     }
 
+    /**
+     * allows user to get a description of an item
+     * @param item to be examined
+     */
+    public void examine(Item item) {
+        // if item is in user's possession
+        System.out.println(item.name + ": " + item.description);
+    }
 
     //public void use(String item){}
 
@@ -398,6 +400,8 @@ public class User {
         User.go("d");
         User.go("w");
         User.checkTracker();
+        Item donut = new Item("Glazed Donut", "A freshly baked donut that smells of oil and sugar. It looks quite scrumptious.");
+        User.examine(donut);
      }
 
     }
