@@ -56,6 +56,7 @@ public class User {
     public User(String name) {
         this.name = name;
         this.living = true;
+        this.max_energy = 100;
         this.current_energy = this.max_energy;
         this.house_x = -1;
         this.house_y = -1;
@@ -77,6 +78,41 @@ public class User {
         else {
             throw new RuntimeException("You are already in the Haunted House.");
         }
+    }
+
+    /**
+     * function to easily change energy levels
+     * @param e integer amount of energy to change current_energy by
+     */
+    private void changeEnergy(int e) {
+        // e is positive, increase in energy
+        if (e > 0) {
+            // increasing energy
+            if  (this.current_energy + e <= this.max_energy) {
+                this.current_energy = this.current_energy + e;
+            }
+            // ensuring that current energy does not exceed max energy
+            else if (this.current_energy + e > this.max_energy) {
+                this.current_energy = this.max_energy;
+            }
+        }
+        // e is negative, decrease in energy
+        else if (e < 0) {
+            // current energy minus e will not lead to zero energy
+            if (this.current_energy > e) {
+                this.current_energy = this.current_energy + e;
+            }
+            else {
+            throw new RuntimeException("Your energy is too low. You died.");
+            }
+        }
+    }
+
+    /**
+     * allows user to see how much energy they have
+     */
+    public void checkEnergy() {
+        System.out.println("Your current energy level is " + this.current_energy + ", with a max energy level of " + this.max_energy + ".");
     }
 
     /**
