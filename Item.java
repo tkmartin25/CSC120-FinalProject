@@ -16,6 +16,12 @@ public class Item {
             if (name == "Healing Potion") {
                 this.description = "A potion that appears pastel pink and blue. It smells sweet and tart.";
             }
+            else if (name == "Shrinking Potion") {
+                this.description = "A caramel-colored potion that is contained in a mini jar. It smells of chopped wood and blackberries. When you hold it to your ear, you think you hear mice chittering.";
+            }
+            else if (name == "Growing Potion") {
+                this.description = "A bright pink potion that is contained in a large jar. It smells of forest and roots. When you hold it to your ear, you think you can hear an elephant's trumpet.";
+            }
             else {
                 this.description = "An unknown potion.";
             }
