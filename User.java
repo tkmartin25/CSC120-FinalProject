@@ -400,8 +400,12 @@ public class User {
         User.go("d");
         User.go("w");
         User.checkTracker();
-        Item donut = new Item("Glazed Donut", "A freshly baked donut that smells of oil and sugar. It looks quite scrumptious.");
+        Item donut = new Item("Donut", "Food", "A freshly baked donut.");
+        Item potion = new Item("Healing Potion", "Potion", "");
+        Item potion2 = new Item("Potion", "Potion", "");
         User.examine(donut);
+        User.examine(potion);
+        User.examine(potion2);
      }
 
     }
