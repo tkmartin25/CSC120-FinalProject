@@ -212,7 +212,7 @@ public class User {
                 this.house_y = 160;
                 System.out.println("You are now in the first floor bathroom.");
             }
-            else if (this.Locate() == "Living Room" && this.house_x <100) {
+            else if (this.Locate() == "Living Room" && this.house_y <100) {
                 this.house_x = 60;
                 this.house_y = 110;
                 System.out.println("You moved to the other side of the living room.");
@@ -232,6 +232,11 @@ public class User {
                 this.house_x = 250;
                 this.house_y = 50;
                 System.out.println("You are now in the dining room.");
+            }
+            else if (this.Locate() == "Living Room" && this.house_y > 100) {
+                this.house_x = 60;
+                this.house_y = 10;
+                System.out.println("You moved to the other side of the living room.");
             }
             else {
                 System.out.println("You can't go towards the front of the house from here.");
@@ -322,6 +327,9 @@ public class User {
             else if (this.house_x > 190 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
                 return("Closet");
             }
+            else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
+                return("Bathroom");
+            }
             else {
                 return("First floor--somewhere.");
             }
@@ -365,11 +373,9 @@ public class User {
      * @param atg integer amount for character's size to increase
      */
     private void grow(int amountToGrow){
-        double amountToGrow = amountToGrow;
         if (this.size + amountToGrow < this.maxSize) {
             this.size = this.size + amountToGrow;
             System.out.println(this.name + " is now this size: " + this.size);
-            return this.size;
         }
         else {
             throw new RuntimeException(this.name + " cannot grow by that amount.");
@@ -403,17 +409,18 @@ public class User {
         User.go("up");
         User.enter();
         User.checkCoordinates();
-        //User.checkLocation();
         User.go("a");
-        User.go("up");
-        User.checkCoordinates();
+        User.go("w");
+        User.go("d");
+        User.go("a");
+        User.go("s");  
         User.go("d");
         User.go("d");
-        User.go("up");
         User.go("w");
         User.go("a");
         User.go("d");
-        User.go("w");
+        User.go("s");
+        User.go("a");
         User.checkTracker();
         Item donut = new Item("Donut", "Food", "A freshly baked donut.");
         Item potion = new Item("Healing Potion", "Potion", "");
