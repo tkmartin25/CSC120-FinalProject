@@ -17,10 +17,10 @@ public class User {
 
     /** size of character */
     // am planning to have places you can only access if you are a certain size
-    double size;
+    int size;
 
     /** max size character can reach */
-    double maxSize;
+    int maxSize;
 
     /** x coordinate of house where character is located */
     int house_x;
@@ -165,16 +165,26 @@ public class User {
                 this.house_y = 140;
                 System.out.println("You are now in the closet.");
             }
+            else if (this.Locate() == "Bathroom" && this.floor == 1) {
+                this.house_x = 115;
+                this.house_y = 110;
+                System.out.println("You are now in the living room.");
+            }
             else {
                 System.out.println("You can't go to the left from here.");
             }
         }
         // moving to the right
         else if (direction == "d") {
-            if (this.Locate() == "Living Room") {
+            if (this.Locate() == "Living Room" && this.house_y < 100) {
                 this.house_x = 125;
                 this.house_y = 10;
                 System.out.println("You are now in the foyer.");
+            }
+            else if (this.Locate() == "Living Room" && this.house_y > 100) {
+                this.house_x = 125;
+                this.house_y = 110;
+                System.out.println("You are now in the first floor bathroom.");
             }
             else if (this.Locate() == "Foyer") {
                 this.house_x = 205;
@@ -201,6 +211,11 @@ public class User {
                 this.house_x = 275;
                 this.house_y = 160;
                 System.out.println("You are now in the first floor bathroom.");
+            }
+            else if (this.Locate() == "Living Room" && this.house_x <100) {
+                this.house_x = 60;
+                this.house_y = 110;
+                System.out.println("You moved to the other side of the living room.");
             }
             else {
                 System.out.println("You can't go towards the back of the house from here.");
@@ -347,19 +362,19 @@ public class User {
 
     /**
      * increases character's size
-     * @return new size after growing
+     * @param atg integer amount for character's size to increase
      */
-    // public Number grow(){
-    //     double amountToGrow = 2;
-    //     if (this.size + amountToGrow < this.maxSize) {
-    //         this.size = this.size + amountToGrow;
-    //         System.out.println(this.name + " is now this size: " + this.size);
-    //         return this.size;
-    //     }
-    //     else {
-    //         throw new RuntimeException(this.name + " cannot grow by that amount.");
-    //     }
-    // }
+    private void grow(int amountToGrow){
+        double amountToGrow = amountToGrow;
+        if (this.size + amountToGrow < this.maxSize) {
+            this.size = this.size + amountToGrow;
+            System.out.println(this.name + " is now this size: " + this.size);
+            return this.size;
+        }
+        else {
+            throw new RuntimeException(this.name + " cannot grow by that amount.");
+        }
+    }
 
     /**
      * character rests, affecting their energy level
