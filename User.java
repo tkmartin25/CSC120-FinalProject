@@ -40,12 +40,6 @@ public class User {
 
     String note;
 
-    /** x coordinate of character in terms of the room's coordinates */
-    // should be automatically calculated based on house coordinates
-    int room_x;
-    /** y coordinate of character in terms of the room's coordinates */
-    int room_y;
-
     /* Default constructor
      * @param name
      */
