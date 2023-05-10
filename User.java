@@ -6,6 +6,8 @@ public class User {
     /** character name */
     String name;
 
+    static String favorite_thing;
+
     /** alive or dead */
     boolean living;
 
@@ -43,8 +45,9 @@ public class User {
     /* Default constructor
      * @param name
      */
-    public User(String name) {
+    public User(String name, String favorite_thing) {
         this.name = name;
+        this.favorite_thing = favorite_thing;
         this.living = true;
         this.max_energy = 100;
         this.current_energy = this.max_energy;
@@ -366,7 +369,7 @@ public class User {
      * increases character's size
      * @param atg integer amount for character's size to increase
      */
-    private void grow(int amountToGrow){
+    public void grow(int amountToGrow){
         if (this.size + amountToGrow < this.maxSize) {
             this.size = this.size + amountToGrow;
             System.out.println(this.name + " is now this size: " + this.size);
@@ -374,6 +377,10 @@ public class User {
         else {
             throw new RuntimeException(this.name + " cannot grow by that amount.");
         }
+    }
+
+    public static String getfavorite_thing() {
+        return favorite_thing;
     }
 
     /**
@@ -390,38 +397,58 @@ public class User {
         //System.out.println(this.name + " drank " + potion + ".");
     //}
 
+    public void playGame() {
+        while (this.living == true) {
+            Scanner userInput = new Scanner(System.in); 
+            System.out.println("" + (5 - notebook.size()) + " page(s) remaining. (Y/N)");
+            String userChoice = userInput.nextLine();
+            if (userChoice.equals("Y")) {
+                Scanner userNote = new Scanner(System.in); 
+                System.out.println("Write your note for page " + (notebook.size() + 1) + ".");
+                String note = userNote.nextLine();
+                notebook.add(note);
+            }
+    }
+
     /** for testing */
     public static void main(String[] args) {
-        User User = new User("Babby");
+        User Player = new User("Babby", "coconut ice cream");
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
         Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1);
         Room Bathroom = new Room("Bathroom", 50, 50, 250, 300, 150, 200, 1);
         Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1);
-        User.checkCoordinates();
-        User.go("up");
-        User.enter();
-        User.checkCoordinates();
-        User.go("a");
-        User.go("w");
-        User.go("d");
-        User.go("a");
-        User.go("s");  
-        User.go("d");
-        User.go("d");
-        User.go("w");
-        User.go("a");
-        User.go("d");
-        User.go("s");
-        User.go("a");
-        User.checkTracker();
+        Room MasterBedroom = new Room("Master Bedroom", 120, 130, 0, 120, 0, 130, 2);
+        Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2);
+        Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2);
+        Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2);
+        Player.checkCoordinates();
+        Player.go("up");
+        Player.enter();
+        // User.checkCoordinates();
+        // User.go("a");
+        // User.go("w");
+        // User.go("d");
+        // User.go("a");
+        // User.go("s");  
+        // User.go("d");
+        // User.go("d");
+        // User.go("w");
+        // User.go("a");
+        // User.go("d");
+        // User.go("s");
+        // User.go("a");
+        // User.checkTracker();
         Item donut = new Item("Donut", "Food", "A freshly baked donut.");
-        Item potion = new Item("Healing Potion", "Potion", "");
+        Item potion = new Item("Golden Potion", "Potion", "");
         Item potion2 = new Item("Potion", "Potion", "");
-        User.examine(donut);
-        User.examine(potion);
-        User.examine(potion2);
+        Player.examine(donut);
+        Player.examine(potion);
+        Player.examine(potion2);
+        Player.write();
+        Player.read(1);
+
      }
 
     }

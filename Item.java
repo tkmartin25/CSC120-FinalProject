@@ -22,6 +22,12 @@ public class Item {
             else if (name == "Growing Potion") {
                 this.description = "A bright pink potion that is contained in a large jar. It smells of forest and roots. When you hold it to your ear, you think you can hear an elephant's trumpet.";
             }
+            else if (name == "Beauty Potion") {
+                this.description = "A periwinkle potion that is contained in a cloud-shaped jar. It smells of lavender and fresh laundry. When you hold it to your ear, you think you hear relaxed breathing.";
+            }
+            else if (name == "Golden Potion") {
+                this.description = "A golden potion that is contained in a star-shaped jar. It smells of " + User.getfavorite_thing() + ".";
+            }
             else {
                 this.description = "An unknown potion.";
             }

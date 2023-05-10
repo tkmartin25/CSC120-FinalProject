@@ -28,5 +28,4 @@ public class Character {
         this.location = location;
     }
 
-    
 }
