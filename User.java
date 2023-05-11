@@ -398,16 +398,42 @@ public class User {
     //}
 
     public void playGame() {
+        Scanner UserInputName = new Scanner(System.in);
+        System.out.println("What is your name?");
+        String userName = UserInputName.nextLine();
+        
+        Scanner UserInputFavoriteThing = new Scanner(System.in);
+        System.out.println("What is your favorite food?");
+        String userFavoriteThing = UserInputFavoriteThing.nextLine();
+        
+        User Player = new User(userName, userFavoriteThing);
+
         while (this.living == true) {
-            Scanner userInput = new Scanner(System.in); 
-            System.out.println("" + (5 - notebook.size()) + " page(s) remaining. (Y/N)");
-            String userChoice = userInput.nextLine();
-            if (userChoice.equals("Y")) {
-                Scanner userNote = new Scanner(System.in); 
-                System.out.println("Write your note for page " + (notebook.size() + 1) + ".");
-                String note = userNote.nextLine();
-                notebook.add(note);
+            Scanner userInput1 = new Scanner(System.in); 
+            System.out.println("What would you like to do?");
+            String userCommand = userInput1.nextLine();
+            if (userCommand.equals("enter")) {
+                Player.enter();
             }
+            else if (userCommand.equals("w")) {
+                Player.go("w");
+            }
+            else if (userCommand.equals("s")) {
+                Player.go("s");
+            }
+            else if (userCommand.equals("a")) {
+                Player.go("a");
+            }
+            else if (userCommand.equals("d")) {
+                Player.go("d");
+            }
+            else if (userCommand.equals("up")) {
+                Player.go("up");
+            }
+            else {
+                System.out.println("Please enter a valid command.");
+            }
+        }
     }
 
     /** for testing */
@@ -423,6 +449,9 @@ public class User {
         Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2);
         Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2);
         Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2);
+        Room Bedroom = new Room("Bedroom", 100, 90, 200, 300, 0, 90, 2);
+        Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
+        Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
         Player.checkCoordinates();
         Player.go("up");
         Player.enter();
@@ -440,15 +469,15 @@ public class User {
         // User.go("s");
         // User.go("a");
         // User.checkTracker();
-        Item donut = new Item("Donut", "Food", "A freshly baked donut.");
-        Item potion = new Item("Golden Potion", "Potion", "");
-        Item potion2 = new Item("Potion", "Potion", "");
-        Player.examine(donut);
-        Player.examine(potion);
-        Player.examine(potion2);
-        Player.write();
-        Player.read(1);
-
+        // Item donut = new Item("Donut", "Food", "A freshly baked donut.");
+        // Item potion = new Item("Golden Potion", "Potion", "");
+        // Item potion2 = new Item("Potion", "Potion", "");
+        // Player.examine(donut);
+        // Player.examine(potion);
+        // Player.examine(potion2);
+        // Player.write();
+        // Player.read(1);
+        Player.playGame();
      }
 
     }
