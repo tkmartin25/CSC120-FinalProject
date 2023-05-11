@@ -4,7 +4,7 @@ Note:  It's a good idea to also make this list available inside the game, in res
 
 *** Functions ***
 
-    User.enter() - You will use this to enter the Haunted House and start playing.
+    "enter" - You will use this to enter the Haunted House and start playing.
 
     User.go(direction) - You will use this function to move around the Haunted House. 
         
@@ -22,9 +22,9 @@ Note:  It's a good idea to also make this list available inside the game, in res
 
             6. "s" - use a to go towards the front of the house. (You can imagine this as the "down" arrow key.)
     
-    User.write() - You can use this to write in your notebook to help you keep track of information. But be warned! You're writing with a pen and will only have [insert here] pages, so be wise with your notes.
+    "write" - You can use this to write in your notebook to help you keep track of information. But be warned! You're writing with a pen and will only have [insert here] pages, so be wise with your notes.
 
-    User.read(page number) - You can use this to see what you've written in your notebook. The page number will be what page you want to read. The notebook starts at page 1 and ends at page 5.
+    "read" - You can use this to see what you've written in your notebook. The page number will be what page you want to read. The notebook starts at page 1 and ends at page 5.
 
     
             

@@ -54,7 +54,7 @@ public class User {
         this.house_x = -1;
         this.house_y = -1;
         this.floor = -1;
-        this.notebook = new ArrayList<String>();
+        this.notebook = new ArrayList<String>(5);
         this.tracker = new ArrayList<String>();
     }
 
@@ -251,11 +251,14 @@ public class User {
         Scanner userInput = new Scanner(System.in); 
         System.out.println("Would you like to write in the notebook? You have " + (5 - notebook.size()) + " page(s) remaining. (Y/N)");
         String userChoice = userInput.nextLine();
-        if (userChoice.equals("Y")) {
+        if (userChoice.equals("Y") && (5 - notebook.size()) > 0) {
             Scanner userNote = new Scanner(System.in); 
             System.out.println("Write your note for page " + (notebook.size() + 1) + ".");
             String note = userNote.nextLine();
             notebook.add(note);
+        }
+        else if (userChoice.equals("Y") && (5 - notebook.size()) == 0) {
+            System.out.println("Sorry, but you already filled up the notebook.");
         }
         else if (userChoice.equals("N")) {
             System.out.println("You decided not to write in the notebook.");
@@ -429,6 +432,15 @@ public class User {
             }
             else if (userCommand.equals("up")) {
                 Player.go("up");
+            }
+            else if (userCommand.equals("write")) {
+                Player.write();
+            }
+            else if (userCommand.equals("read")) {
+                Scanner UserInputpagenum = new Scanner(System.in);
+                System.out.println("What page would you like to read? (ex. 1, 2 etc.)");
+                int userpagenum = UserInputpagenum.nextInt();
+                Player.read(userpagenum);
             }
             else {
                 System.out.println("Please enter a valid command.");
