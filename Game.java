@@ -24,7 +24,7 @@ public class Game {
         Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2, "A small but beautiful bathroom. The tiles on the floor are royal blue. You notice a name carved into one of the walls near the floor: Juliet.");
         Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2, "A closet full of clothes.");
         Room Bedroom = new Room("Bedroom", 100, 90, 200, 300, 0, 90, 2, "A children's bedrom. There are many dolls in the room but one of them perched on top of the shelf catches your eye. On her necklace, you see the initial E.");
-        Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2, "A hallway with 7 different portraits against the wall.");
+        Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2, "A hallway with 7 different portraits against the wall. There is a latch on the ceiling leading to the attic.");
         Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2, "A bathroom full of cobwebs. There is a black and white painting on the wall of 6 women. The one in the middle seems to be staring at you directly.");
         Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3, "It's dark.");
         Haunted_house.buildHouse();
@@ -109,6 +109,9 @@ public class Game {
             else if (userCommand.equals("check tracker")) {
                 Player.checkTracker();
             }
+            else if (userCommand.equals("check items")) {
+                Player.checkItems();
+            }
             else if (userCommand.equals("check energy")) {
                 Player.checkEnergy();
             }
@@ -153,7 +156,7 @@ public class Game {
                 int userExamineChoice = UserInputExamine.nextInt();
                 Player.examine(Player.items.get(userExamineChoice));
             }
-            else if (userCommand.equals("examine Room")) {
+            else if (userCommand.equals("examine room")) {
                 if (Player.Locate() == "Foyer") {
                     Foyer.getDescription();
                 }

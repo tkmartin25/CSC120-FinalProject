@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** User class */
 public class User {
 
     /** player name */
@@ -159,7 +160,7 @@ public class User {
      * @param item item to be taken into posession
      */
     public void take(Item item) {
-        if (this.Locate() == item.initial_location && !this.items.contains(item)) {
+        if (this.Locate() == item.initial_location) {
             this.items.add(item);
         }
         else {
@@ -168,8 +169,8 @@ public class User {
     }
 
     /**
-    * based on the direction north, south, east, or west, the bat moves coordinates by a unit of 1
-    * @param direction for bat to walk in
+    * based on the direction up, down, a, w, s, d, the player moves up one floor, downn one floor, or in one of four directions
+    * @param direction for the player to move in
     */
     public void go(String direction) {
         // formatting of user inputted direction
@@ -394,9 +395,11 @@ public class User {
                 System.out.println("You can't go towards the front of the house from here.");
             }
         }
+        // invalid direction
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
+        // adds location to tracker
         this.track();
     }
 
@@ -413,9 +416,11 @@ public class User {
             String note = userNote.nextLine();
             notebook.add(note);
         }
+        // no empty pages left
         else if (userChoice.equals("Y") && (5 - notebook.size()) == 0) {
             System.out.println("Sorry, but you already filled up the notebook.");
         }
+        // user does not want to write in notebook
         else if (userChoice.equals("N")) {
             System.out.println("You decided not to write in the notebook.");
         }
@@ -527,7 +532,7 @@ public class User {
     }
 
     /**
-     * increases character's size
+     * changes character's size
      * @param size integer amount for character's size to change
      */
     public void changeSize(int size){
@@ -550,7 +555,7 @@ public class User {
             System.out.println(this.name + " is now this size: " + this.size);
         }
         else {
-            System.out.println("No change to size.");
+            System.out.println("There was no change in size.");
         }
     }
 
@@ -584,6 +589,7 @@ public class User {
     }
 
     /**
+     * user drinks potion and gains that potion's effects
      * @param potion to drink
      */
     public void drink(Item potion){
