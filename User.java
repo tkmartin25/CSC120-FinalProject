@@ -25,6 +25,9 @@ public class User {
     /** max size character can reach */
     int maxSize;
 
+    /** min size character can reach */
+    int minSize;
+
     /** x coordinate of house where character is located */
     int house_x;
 
@@ -56,6 +59,9 @@ public class User {
         this.living = true;
         this.max_energy = 100;
         this.current_energy = max_energy;
+        this.size = 50;
+        this.maxSize = 90;
+        this.minSize = 10;
         this.house_x = -1;
         this.house_y = -1;
         this.floor = -1;
@@ -255,7 +261,7 @@ public class User {
                 this.house_y = 10;
                 System.out.println("You are now in the dining room.");
             }
-            else if (this.Locate() == "Closet") {
+            else if (this.Locate() == "Closet" && this.floor == 1) {
                 this.house_x = 205;
                 this.house_y = 140;
                 System.out.println("You are now in the kitchen.");
@@ -495,40 +501,47 @@ public class User {
                 return("Second floor.");
             }
         }
+        else if (this.floor == 3) {
+            return("Attic");
+        }
         else {
             return("Inside Haunted House.");
         }
     }
 
     /**
-     * decreases character's size
-     * @return new size after shrinking
-     */
-    // public Number shrink(){
-    //     double amountToShrink = 2;
-    //     if (this.size - amountToShrink > 0) {
-    //         this.size = this.size - amountToShrink;
-    //         System.out.println(this.name + " is now this size: " + this.size);
-    //         return this.size;
-    //     }
-    //     else {
-    //         throw new RuntimeException(this.name + " cannot shrink by that amount.");
-    //     }
-        
-    // }
-
-    /**
      * increases character's size
-     * @param atg integer amount for character's size to increase
+     * @param size integer amount for character's size to change
      */
-    public void grow(int amountToGrow){
-        if (this.size + amountToGrow < this.maxSize) {
-            this.size = this.size + amountToGrow;
+    public void changeSize(int size){
+        if (size > 0) {
+            if (this.size + size < this.maxSize) {
+                this.size = this.size + size;
+            }
+            else {
+                this.size = this.maxSize;
+            }
+            System.out.println(this.name + " is now this size: " + this.size);
+        }
+        else if (size < 0) {
+            if (this.size + size > this.minSize) {
+                this.size = this.size + size;
+            }
+            else {
+                this.size = this.minSize;
+            }
             System.out.println(this.name + " is now this size: " + this.size);
         }
         else {
-            throw new RuntimeException(this.name + " cannot grow by that amount.");
+            System.out.println("No change to size.");
         }
+    }
+
+    /**
+     * allows user to see their current size
+     */
+    public void checkSize() {
+        System.out.println("Your current size is " + this.size + ".");
     }
 
     /**
@@ -545,6 +558,8 @@ public class User {
     public void drink(Item potion){
         System.out.println(this.name + " drank a " + potion.name + ".");
         this.changeEnergy(potion.effect);
+        this.changeSize(potion.effectsize);
+        
     }
 
     /** for testing */
