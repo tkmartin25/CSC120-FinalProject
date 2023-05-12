@@ -97,6 +97,47 @@ public class Game {
                 int userExamineChoice = UserInputExamine.nextInt();
                 Player.examine(Player.items.get(userExamineChoice));
             }
+            else if (userCommand.equals("examine Room")) {
+                if (Player.Locate() == "Foyer") {
+                    Foyer.getDescription();
+                }
+                else if (Player.Locate() == "Living Room") {
+                    LivingRoom.getDescription();
+                }
+                else if (Player.Locate() == "Dining Room") {
+                    DiningRoom.getDescription();
+                }
+                else if (Player.Locate() == "Bathroom" && Player.floor == 1) {
+                    Bathroom.getDescription();
+                }
+                else if (Player.Locate() == "Bathroom" && Player.floor == 2) {
+                    Bathroom2.getDescription();
+                }
+                else if (Player.Locate() == "Master Bathroom") {
+                    MasterBathroom.getDescription();
+                }
+                else if (Player.Locate() == "Closet" && Player.floor == 1) {
+                    Closet.getDescription();
+                }
+                else if (Player.Locate() == "Closet" && Player.floor == 2) {
+                    Closet2.getDescription();
+                }
+                else if (Player.Locate() == "Kitchen") {
+                    Kitchen.getDescription();
+                }
+                else if (Player.Locate() == "Hallway") {
+                    Hallway.getDescription();
+                }
+                else if (Player.Locate() == "Master Bedroom") {
+                    MasterBedroom.getDescription();
+                }
+                else if (Player.Locate() == "Bedroom") {
+                    Bedroom.getDescription();
+                }
+                else if (Player.Locate() == "Office") {
+                    Office.getDescription();
+                }
+            }
             else {
                 System.out.println("Please enter a valid command.");
             }

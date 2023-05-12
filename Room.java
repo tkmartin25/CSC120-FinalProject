@@ -41,4 +41,11 @@ public class Room {
         this.floor = floor;
         this.description = description;
     }
+
+    /** 
+     * prints description of room
+     */
+    public void getDescription() {
+        System.out.println(this.description);
+    }
 }
