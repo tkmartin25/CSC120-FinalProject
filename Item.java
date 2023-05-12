@@ -38,7 +38,7 @@ public class Item {
                 this.description = "A periwinkle potion that is contained in a cloud-shaped jar. It smells of lavender and fresh laundry. When you hold it to your ear, you think you hear relaxed breathing.";
             }
             else if (name == "Golden Potion") {
-                this.description = "A golden potion that is contained in a star-shaped jar. It smells of " + User.getfavorite_thing() + ".";
+                this.description = "A golden potion that is contained in a star-shaped jar. It smells of your favorite food.";
                 this.effect = 75;
             }
             else if (name == "Maroon Potion") {

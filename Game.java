@@ -51,11 +51,8 @@ public class Game {
         String userFavoriteThing = UserInputFavoriteThing.nextLine();
         // creates player with User class
         User Player = new User(userName, userFavoriteThing);
-    
-        Item Potion = new Item("Shrinking Potion", "Potion", "", 0, 0);
-        Player.take(Potion);
         // while player is alive
-        while (Player.living == true) {
+        while (Player.living == true && Player.win == false) {
             // user inputs command
             Scanner userInput1 = new Scanner(System.in); 
             System.out.println("What would you like to do?");
@@ -201,6 +198,9 @@ public class Game {
         // player died, game over
         if (Player.living == false) {
             System.out.println("You lost! Better luck next time.");
+        }
+        else if (Player.win == true) {
+            System.out.println("Congratulations! You won the game.");
         }
     }
     

@@ -49,6 +49,9 @@ public class User {
     /** note to be added to the player's notebook */
     String note;
 
+    /** if the player has won yet */
+    static boolean win;
+
     /** User constructor
      * @param name
      * @param favorite_thing
@@ -68,6 +71,7 @@ public class User {
         this.notebook = new ArrayList<String>(5);
         this.tracker = new ArrayList<String>();
         this.items = new ArrayList<Item>();
+        this.win = false;
     }
 
     /** 
@@ -172,21 +176,29 @@ public class User {
         direction = direction.toLowerCase();
         // moving up 1 floor
         if (direction == "up") {
-            if (this.Locate() == "Foyer") {
+            if (this.Locate() == "Foyer" && tracker.contains("Bathroom") && tracker.contains("Closet")) {
                 this.floor = 2;
                 this.house_x = 195;
                 this.house_y = 95;
                 System.out.println("You walked up the stairs to the second floor hallway.");
             }
-            else if (this.Locate() == "Hallway") {
+            else if (this.Locate() == "Hallway" && tracker.contains("Master Bathroom") && tracker.contains("Office") && tracker.contains("Bedroom")) {
                 Scanner UserInputAttic = new Scanner(System.in);
                 System.out.println("Are you sure you want to go up? You won't be able to come back down if you choose to go up now. (Y or N)");
                 String UserInputAtticChoice = UserInputAttic.nextLine();
                 if (UserInputAtticChoice.equals("Y")) {
+                    Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3, "It's dark.");
+                    Lucretia Lucretia = new Lucretia(Attic);
                     this.floor = 3;
                     this.house_x = 150;
                     this.house_y = 100;
                     System.out.println("You pulled the ceiling tab and climbed up to the attic.");
+                    System.out.println("You see a ghost in the center of the room. She makes her way over to you.");
+                    Lucretia.firstTest();
+                    Lucretia.secondTest();
+                    if (this.living = true) {
+                        Lucretia.thirdTest();
+                    }
                 }
                 else {
                     System.out.println("You decided against going up to the attic.");
@@ -297,7 +309,7 @@ public class User {
                 this.house_y = 70;
                 System.out.println("You are now in the kitchen.");
             }
-            else if (this.Locate() == "Kitchen") {
+            else if (this.Locate() == "Kitchen" && this.size < 31) {
                 this.house_x = 275;
                 this.house_y = 160;
                 System.out.println("You are now in a small room.");
@@ -558,6 +570,20 @@ public class User {
     }
 
     /**
+     * User dies, ending game
+     */
+    public void die() {
+        this.living = false;
+    }
+
+    /**
+     * User wins, ending game
+     */
+    public static void win() {
+        win = true;
+    }
+
+    /**
      * @param potion to drink
      */
     public void drink(Item potion){
@@ -565,52 +591,4 @@ public class User {
         this.changeEnergy(potion.effect);
         this.changeSize(potion.effectsize);
     }
-
-    /** for testing */
-    public static void main(String[] args) {
-        // User Player = new User("Babby", "coconut ice cream");
-        // Item potion = new Item("Golden Potion", "Potion", "", 0);
-        // Item potion2 = new Item("Healing Potion", "Potion", "", 0);
-        // Player.take(potion);
-        // Player.take(potion2);
-        // Player.checkItems();
-        // Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
-        // Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
-        // Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
-        // Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1);
-        // Room SecretRoom = new Room("Secret Room", 50, 50, 250, 300, 150, 200, 1);
-        // Room Bathroom = new Room("Bathroom", 70, 50, 120, 200, 150, 200, 1);
-        // Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1);
-        // Room MasterBedroom = new Room("Master Bedroom", 120, 130, 0, 120, 0, 130, 2);
-        // Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2);
-        // Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2);
-        // Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2);
-        // Room Bedroom = new Room("Bedroom", 100, 90, 200, 300, 0, 90, 2);
-        // Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
-        // Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
-        // Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3);
-        // User.checkCoordinates();
-        // User.go("a");
-        // User.go("w");
-        // User.go("d");
-        // User.go("a");
-        // User.go("s");  
-        // User.go("d");
-        // User.go("d");
-        // User.go("w");
-        // User.go("a");
-        // User.go("d");
-        // User.go("s");
-        // User.go("a");
-        // User.checkTracker();
-        // Item donut = new Item("Donut", "Food", "A freshly baked donut.");
-        // Item potion = new Item("Golden Potion", "Potion", "");
-        // Item potion2 = new Item("Potion", "Potion", "");
-        // Player.examine(donut);
-        // Player.examine(potion);
-        // Player.examine(potion2);
-        // Player.write();
-        // Player.read(1);
-        // Player.playGame();
-     }
 }
