@@ -27,6 +27,20 @@ public class Game {
         Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2, "A bathroom full of cobwebs. There is a black and white painting on the wall of 6 women. The one in the middle seems to be staring at you directly.");
         Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3, "It's dark.");
         Haunted_house.buildHouse();
+        // potions
+        Item Potion1 = new Item("Healing Potion", "Potion", "", 0, 0);
+        Item Potion2 = new Item("Shrinking Potion", "Potion", "", 0, 0);
+        Item Potion3 = new Item("Growing Potion", "Potion", "", 0, 0);
+        Item Potion4 = new Item("Beauty Potion", "Potion", "", 0, 0);
+        Item Potion5 = new Item("Golden Potion", "Potion", "", 0, 0);
+        Item Potion6 = new Item("Maroon Potion", "Potion", "", 0, 0);
+        Kitchen.addPotion(Potion1);
+        Kitchen.addPotion(Potion2);
+        Kitchen.addPotion(Potion3);
+        Kitchen.addPotion(Potion4);
+        Kitchen.addPotion(Potion5);
+        Kitchen.addPotion(Potion6);
+        int counter = 0;
         // asks user's name
         Scanner UserInputName = new Scanner(System.in);
         System.out.println("What is your name?");
@@ -94,6 +108,24 @@ public class Game {
             }
             else if (userCommand.equals("check size")) {
                 Player.checkSize();
+            }
+            else if (userCommand.equals("take")) {
+                if (Player.Locate() == "Kitchen") {
+                    if (counter < 4) {
+                        Scanner UserInputTake = new Scanner(System.in);
+                        Kitchen.getItems();
+                        System.out.println("What item do you want to take? (Enter the number next to the item you want to take.)");
+                        int userTakeChoice = UserInputTake.nextInt();
+                        Player.take(Kitchen.Roomitems.get(userTakeChoice));
+                        counter ++;
+                    }
+                    else {
+                        System.out.println("Sorry, but you've already taken enough from a house that isn't yours.");
+                    }
+                }
+                else {
+                    System.out.println("Sorry, but there's nothing to take in this room.");
+                }
             }
             else if (userCommand.equals("drink")) {
                 if (Player.items.size() > 0) {

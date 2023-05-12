@@ -155,7 +155,12 @@ public class User {
      * @param item item to be taken into posession
      */
     public void take(Item item) {
-        this.items.add(item);
+        if (this.Locate() == item.initial_location && !this.items.contains(item)) {
+            this.items.add(item);
+        }
+        else {
+            System.out.println("You can't take an item you aren't near.");
+        }
     }
 
     /**
@@ -559,17 +564,16 @@ public class User {
         System.out.println(this.name + " drank a " + potion.name + ".");
         this.changeEnergy(potion.effect);
         this.changeSize(potion.effectsize);
-        
     }
 
     /** for testing */
     public static void main(String[] args) {
-        User Player = new User("Babby", "coconut ice cream");
-        Item potion = new Item("Golden Potion", "Potion", "", 0);
-        Item potion2 = new Item("Healing Potion", "Potion", "", 0);
-        Player.take(potion);
-        Player.take(potion2);
-        Player.checkItems();
+        // User Player = new User("Babby", "coconut ice cream");
+        // Item potion = new Item("Golden Potion", "Potion", "", 0);
+        // Item potion2 = new Item("Healing Potion", "Potion", "", 0);
+        // Player.take(potion);
+        // Player.take(potion2);
+        // Player.checkItems();
         // Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         // Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         // Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
@@ -609,6 +613,4 @@ public class User {
         // Player.read(1);
         // Player.playGame();
      }
-
-    }
-
+}

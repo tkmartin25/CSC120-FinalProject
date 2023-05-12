@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Room {
 
     /** name of room */
@@ -18,6 +20,8 @@ public class Room {
     int floor;
     /** text describing the room */
     String description;
+    /** stores which items within the room */
+    ArrayList<Item> Roomitems;
 
     /** Room constructor
      * @param name
@@ -40,6 +44,9 @@ public class Room {
         this.max_y = max_y;
         this.floor = floor;
         this.description = description;
+        if (this.name == "Kitchen") {
+            this.Roomitems = new ArrayList<Item>();
+        }
     }
 
     /** 
@@ -47,5 +54,23 @@ public class Room {
      */
     public void getDescription() {
         System.out.println(this.description);
+    }
+
+    /**
+     * prints descriptions of all potions in the room
+     */
+    public void getItems() {
+        System.out.println("Here are the items currently in the room: ");
+        for(int i = 0; i < this.Roomitems.size(); i++){
+            System.out.println(i + ": " + this.Roomitems.get(i).description);
+        }
+    }
+
+    /**
+    * adds an existing potion to the room
+    * @param potion to be added
+    */
+    public void addPotion(Item potion) {
+        Roomitems.add(potion);
     }
 }

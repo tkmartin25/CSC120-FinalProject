@@ -4,19 +4,23 @@ public class Item {
     String type;
     int effect;
     int effectsize;
+    String initial_location;
 
     /** 
-     * Default constructor
+     * constructor for item
      * @param name
      * @param description
-     * @param type
+     * @param type i.e. potion, food
+     * @param effect int change on energy level of user
+     * @param effectsize int change on size of user
      */
     public Item(String name, String type, String description, int effect, int effectsize) {
         this.name = name;
         this.type = type;
         this.description = description;
-        this.effect = 0;
-        this.effectsize = 0;
+        this.effect = effect;
+        this.effectsize = effectsize;
+        this.initial_location = "Kitchen";
         if (type == "Potion") {
             if (name == "Healing Potion") {
                 this.description = "A potion that appears pastel pink and blue. It smells sweet and tart.";
@@ -46,5 +50,4 @@ public class Item {
             }
         }
     }
-    
 }
