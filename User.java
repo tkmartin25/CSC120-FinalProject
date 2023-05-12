@@ -8,7 +8,7 @@ public class User {
     String name;
 
     /** favorite food, used in determining what the golden potion smells like */
-    static String favorite_thing;
+    String favorite_thing;
 
     /** alive or dead */
     boolean living;
@@ -72,7 +72,7 @@ public class User {
         this.notebook = new ArrayList<String>(5);
         this.tracker = new ArrayList<String>();
         this.items = new ArrayList<Item>();
-        this.win = false;
+        win = false;
     }
 
     /** 
@@ -570,7 +570,7 @@ public class User {
      * accessor for player's favorite food
      * @return favorite_thing
      */
-    public static String getfavorite_thing() {
+    public String getfavorite_thing() {
         return favorite_thing;
     }
 
