@@ -51,12 +51,13 @@ public class User {
         this.favorite_thing = favorite_thing;
         this.living = true;
         this.max_energy = 100;
-        this.current_energy = this.max_energy;
+        this.current_energy = 10;
         this.house_x = -1;
         this.house_y = -1;
         this.floor = -1;
         this.notebook = new ArrayList<String>(5);
         this.tracker = new ArrayList<String>();
+        this.items = new ArrayList<Item>();
     }
 
     /** 
@@ -114,7 +115,7 @@ public class User {
     /**
      * checks if user's current location is in tracker. If not, it adds the location to the tracker.
      */
-    private void track() {
+    public void track() {
         if (!this.tracker.contains(this.Locate())) {
             this.tracker.add(this.Locate());
         }
@@ -127,6 +128,24 @@ public class User {
         for(int i = 0; i < this.tracker.size(); i++){
             System.out.println(this.tracker.get(i));
         }
+    }
+
+    /**
+     * prints out which items are in the user's posession
+     */
+    public void checkItems() {
+        System.out.println("Here are the items currently in your posession: ");
+        for(int i = 0; i < this.items.size(); i++){
+            System.out.println(i + ": " + this.items.get(i).name);
+        }
+    }
+
+    /**
+     * adds items to user's posession
+     * @param item item to be taken into posession
+     */
+    public void take(Item item) {
+        this.items.add(item);
     }
 
     /**
@@ -415,21 +434,21 @@ public class User {
     }
 
     /**
-     * character rests, affecting their energy level
+     * @param potion to drink
      */
-    // public void rest(int hours){
-    //     System.out.println(this.name + " rested for " + hours + " hours.");
-    // }
-
-    /**
-     * character rests, affecting their energy level
-     */
-    //public void drink(potion){
-        //System.out.println(this.name + " drank " + potion + ".");
-    //}
+    public void drink(Item potion){
+        System.out.println(this.name + " drank a " + potion.name + ".");
+        this.changeEnergy(potion.effect);
+    }
 
     /** for testing */
     public static void main(String[] args) {
+        User Player = new User("Babby", "coconut ice cream");
+        Item potion = new Item("Golden Potion", "Potion", "", 0);
+        Item potion2 = new Item("Healing Potion", "Potion", "", 0);
+        Player.take(potion);
+        Player.take(potion2);
+        Player.checkItems();
         // Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         // Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         // Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);

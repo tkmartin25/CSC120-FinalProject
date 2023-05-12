@@ -42,6 +42,7 @@ public class House {
         Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
         Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
         Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3);
+        Item Potion = new Item("Healing Potion", "Potion", "", 0);
     }
     
 

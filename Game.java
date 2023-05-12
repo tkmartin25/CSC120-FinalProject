@@ -17,7 +17,8 @@ public class Game {
         String userFavoriteThing = UserInputFavoriteThing.nextLine();
         
         User Player = new User(userName, userFavoriteThing);
-
+        Item Potion = new Item("Healing Potion", "Potion", "", 0);
+        Player.take(Potion);
         while (Player.living == true) {
             Scanner userInput1 = new Scanner(System.in); 
             System.out.println("What would you like to do?");
@@ -63,12 +64,19 @@ public class Game {
             else if (userCommand.equals("check energy")) {
                 Player.checkEnergy();
             }
+            else if (userCommand.equals("drink")) {
+                Scanner UserInputPotion = new Scanner(System.in);
+                Player.checkItems();
+                System.out.println("What potion do you want to drink? (Enter the number next to the potion you want to drink.)");
+                int userPotionChoice = UserInputPotion.nextInt();
+                Player.drink(Player.items.get(userPotionChoice));
+            }
             else {
                 System.out.println("Please enter a valid command.");
             }
         }
         if (Player.living == false) {
-            System.out.println("");
+            System.out.println("You lost! Better luck next time.");
         }
     }
     
