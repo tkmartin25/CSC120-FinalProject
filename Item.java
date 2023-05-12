@@ -1,9 +1,22 @@
+/** Item class */
 public class Item {
+
+    /** name of item */
     String name;
+
+    /** text description of item */
     String description;
+
+    /** type of item, examples: potion, food, etc. */
     String type;
+
+    /** integer change on player's energy level */
     int effect;
+
+    /** integer change on player's size */
     int effectsize;
+
+    /** initial location of item */
     String initial_location;
 
     /** 
