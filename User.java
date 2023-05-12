@@ -3,9 +3,10 @@ import java.util.Scanner;
 
 public class User {
 
-    /** character name */
+    /** player name */
     String name;
 
+    /** favorite food, used in determining what the golden potion smells like */
     static String favorite_thing;
 
     /** alive or dead */
@@ -36,13 +37,16 @@ public class User {
     /** stores which items user possesses */
     ArrayList<Item> items;
 
+    /** player's notebook to write in */
     ArrayList<String> notebook;
 
+    /** device that can be used by the player to see all locations the player has been to */
     ArrayList<String> tracker;
 
+    /** note to be added to the player's notebook */
     String note;
 
-    /** Default constructor
+    /** User constructor
      * @param name
      * @param favorite_thing
      */
@@ -179,6 +183,17 @@ public class User {
             }
             else {
                 System.out.println("You can't go up from here.");
+            }
+        // moving down 1 floor
+        else if (direction == "down") {
+            if (this.Locate() == "Hallway") {
+                this.floor = 1;
+                this.house_x = 195;
+                this.house_y = 10;
+                System.out.println("You walked down the stairs to the foyer.");
+            }
+            else {
+                System.out.println("You can't go down from here.");
             }
         }
         // moving to the left
@@ -381,18 +396,6 @@ public class User {
             return("Inside Haunted House.");
         }
     }
-
-    // public void checkLocation() {
-    //     if (this.house_x < 0 || this.house_y < 0) {
-    //         System.out.println("You are outside the Haunted House. Enter the Haunted House to play.");
-    //     }
-    //     else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 0 && this.house_y < 100 && this.floor == 1) {
-    //         System.out.println("You are inside the Foyer."); 
-    //     }
-    //     else {
-    //         System.out.println("You are somewhere inside the house.");
-    //     }
-    // }
 
     /**
      * decreases character's size
