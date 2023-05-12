@@ -23,9 +23,3 @@ For your first action, you should type "enter" to enter the Haunted House.
 From then on, you can travel through different rooms and take different actions. These are all detailed in the "cheatsheet.md."
 
 Tip: Check your energy regularly with "check energy".
-
-
-
-
-
-
