@@ -9,24 +9,29 @@ public class Game {
      * run this method to play game
      */
     public void playGame() {
+        // creates haunted house
         House Haunted_house = new House();
         Haunted_house.buildHouse();
-
+        // asks user's name
         Scanner UserInputName = new Scanner(System.in);
         System.out.println("What is your name?");
         String userName = UserInputName.nextLine();
-        
+        // asks user's favorite food
         Scanner UserInputFavoriteThing = new Scanner(System.in);
         System.out.println("What is your favorite food?");
         String userFavoriteThing = UserInputFavoriteThing.nextLine();
-        
+        // creates player with User class
         User Player = new User(userName, userFavoriteThing);
-        Item Potion = new Item("Healing Potion", "Potion", "", 0);
+    
+        Item Potion = new Item("Maroon Potion", "Potion", "", 0);
         Player.take(Potion);
+        // while player is alive
         while (Player.living == true) {
+            // user inputs command
             Scanner userInput1 = new Scanner(System.in); 
             System.out.println("What would you like to do?");
             String userCommand = userInput1.nextLine();
+            // if else ladder for all commands
             if (userCommand.equals("enter")) {
                 Player.enter();
             }
@@ -73,11 +78,17 @@ public class Game {
                 Player.checkEnergy();
             }
             else if (userCommand.equals("drink")) {
-                Scanner UserInputPotion = new Scanner(System.in);
-                Player.checkItems();
-                System.out.println("What potion do you want to drink? (Enter the number next to the potion you want to drink.)");
-                int userPotionChoice = UserInputPotion.nextInt();
-                Player.drink(Player.items.get(userPotionChoice));
+                if (Player.items.size() > 0) {
+                    Scanner UserInputPotion = new Scanner(System.in);
+                    Player.checkItems();
+                    System.out.println("What potion do you want to drink? (Enter the number next to the potion you want to drink.)");
+                    int userPotionChoice = UserInputPotion.nextInt();
+                    Player.drink(Player.items.get(userPotionChoice));
+                    Player.items.remove(userPotionChoice);
+                }
+                else {
+                    System.out.println("Sorry, but you don't have any items to drink at the moment.");
+                }
             }
             else if (userCommand.equals("examine")) {
                 Scanner UserInputExamine = new Scanner(System.in);
@@ -90,6 +101,7 @@ public class Game {
                 System.out.println("Please enter a valid command.");
             }
         }
+        // player died, game over
         if (Player.living == false) {
             System.out.println("You lost! Better luck next time.");
         }
