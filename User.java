@@ -42,8 +42,9 @@ public class User {
 
     String note;
 
-    /* Default constructor
+    /** Default constructor
      * @param name
+     * @param favorite_thing
      */
     public User(String name, String favorite_thing) {
         this.name = name;
@@ -78,7 +79,7 @@ public class User {
      * function to easily change energy levels
      * @param e integer amount of energy to change current_energy by
      */
-    private void changeEnergy(int e) {
+    public void changeEnergy(int e) {
         // e is positive, increase in energy
         if (e > 0) {
             // increasing energy
@@ -97,7 +98,8 @@ public class User {
                 this.current_energy = this.current_energy + e;
             }
             else {
-            throw new RuntimeException("Your energy is too low. You died.");
+                System.out.println("Your energy is too low. You died.");
+                this.living = false;
             }
         }
     }
@@ -306,8 +308,6 @@ public class User {
         // if item is in user's possession
         System.out.println(item.name + ": " + item.description);
     }
-
-    //public void use(String item){}
 
     /**
      * allows user to check what coordinates they are at

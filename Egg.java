@@ -6,10 +6,10 @@ public class Egg extends Character {
 
     public void roll() {
         if (Player.Locate() == this.location.name) {
-
+            System.out.println("You see Egg rolling.");
         }
         else if (User.Locate() != this.location.name) {
-
+            System.out.println("Somewhere in the distance, you hear floors creaking.");
         }
     }
     

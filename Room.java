@@ -9,10 +9,14 @@ public class Room {
     int max_y;
     int floor;
 
-    /* Default constructor
+    /** Default constructor
      * @param name
      * @param width
      * @param length
+     * @param mix_x
+     * @param max_x
+     * @param min_y
+     * @param max_y
      * @param floor
      */
     public Room(String name, int width, int length, int min_x, int max_x, int min_y, int max_y, int floor) {
@@ -24,11 +28,6 @@ public class Room {
         this.min_y = min_y;
         this.max_y = max_y;
         this.floor = floor;
-    }
-
-    /** for testing */
-    public static void main(String[] args) {
-        
     }
 
 }

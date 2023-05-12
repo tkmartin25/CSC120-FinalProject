@@ -27,18 +27,23 @@ public class Game {
             }
             else if (userCommand.equals("w")) {
                 Player.go("w");
+                Player.changeEnergy(-5);
             }
             else if (userCommand.equals("s")) {
                 Player.go("s");
+                Player.changeEnergy(-5);
             }
             else if (userCommand.equals("a")) {
                 Player.go("a");
+                Player.changeEnergy(-5);
             }
             else if (userCommand.equals("d")) {
                 Player.go("d");
+                Player.changeEnergy(-5);
             }
             else if (userCommand.equals("up")) {
                 Player.go("up");
+                Player.changeEnergy(-5);
             }
             else if (userCommand.equals("write")) {
                 Player.write();
@@ -55,15 +60,20 @@ public class Game {
             else if (userCommand.equals("check tracker")) {
                 Player.checkTracker();
             }
+            else if (userCommand.equals("check energy")) {
+                Player.checkEnergy();
+            }
             else {
                 System.out.println("Please enter a valid command.");
             }
         }
+        if (Player.living == false) {
+            System.out.println("");
+        }
     }
     
-public static void main(String[] args) {
+    public static void main(String[] args) {
         Game Game = new Game();
         Game.playGame();
-     }
-
+    }
 }
