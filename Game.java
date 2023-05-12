@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class Game {
 
+    /** game constructor */
     public Game() {}
 
+    /** 
+     * run this method to play game
+     */
     public void playGame() {
         House Haunted_house = new House();
         Haunted_house.buildHouse();
@@ -80,6 +84,9 @@ public class Game {
         }
     }
     
+    /** 
+     * run main() to play game
+     */
     public static void main(String[] args) {
         Game Game = new Game();
         Game.playGame();
