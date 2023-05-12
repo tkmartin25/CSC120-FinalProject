@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+/** Game class */
 public class Game {
 
     /** game constructor */
@@ -16,7 +17,7 @@ public class Game {
         Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1, "A room with a long dining table with eight chairs. There is a chandelier from the ceiling.");
         Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1, "A pristinely clean kitchen with many cabinets for storage. At the center of the room, you see potions.");
         Room SecretRoom = new Room("Secret Room", 50, 50, 250, 300, 150, 200, 1, "An empty room. You see a scroll on the floor that reads: Do not drink the red potion.");
-        Room Bathroom = new Room("Bathroom", 70, 50, 120, 200, 150, 200, 1, "");
+        Room Bathroom = new Room("Bathroom", 70, 50, 120, 200, 150, 200, 1, "A regular bathroom. There is a painting of an old sailor on the wall.");
         Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1, "A closet that seems to have a locked latch on the ground. You wonder where it leads to. On the wall, you see a painting of a young girl holding a yellow dog in a lemon orchard.");
         Room MasterBedroom = new Room("Master Bedroom", 120, 130, 0, 120, 0, 130, 2, "A room with a grand bed that looks perfect for jumping on.");
         Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2, "An office room with two windows. There are five bookshelves.");
@@ -27,6 +28,7 @@ public class Game {
         Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2, "A bathroom full of cobwebs. There is a black and white painting on the wall of 6 women. The one in the middle seems to be staring at you directly.");
         Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3, "It's dark.");
         Haunted_house.buildHouse();
+        
         // potions
         Item Potion1 = new Item("Healing Potion", "Potion", "", 0, 0);
         Item Potion2 = new Item("Shrinking Potion", "Potion", "", 0, 0);
@@ -34,29 +36,36 @@ public class Game {
         Item Potion4 = new Item("Beauty Potion", "Potion", "", 0, 0);
         Item Potion5 = new Item("Golden Potion", "Potion", "", 0, 0);
         Item Potion6 = new Item("Maroon Potion", "Potion", "", 0, 0);
+        // adding all potions to kitchen
         Kitchen.addPotion(Potion1);
         Kitchen.addPotion(Potion2);
         Kitchen.addPotion(Potion3);
         Kitchen.addPotion(Potion4);
         Kitchen.addPotion(Potion5);
         Kitchen.addPotion(Potion6);
+        // counter for how many potions the user has taken
         int counter = 0;
+        
         // asks user's name
         Scanner UserInputName = new Scanner(System.in);
         System.out.println("What is your name?");
         String userName = UserInputName.nextLine();
+        
         // asks user's favorite food
         Scanner UserInputFavoriteThing = new Scanner(System.in);
         System.out.println("What is your favorite food?");
         String userFavoriteThing = UserInputFavoriteThing.nextLine();
+        
         // creates player with User class
         User Player = new User(userName, userFavoriteThing);
+        
         // while player is alive
         while (Player.living == true && Player.win == false) {
             // user inputs command
             Scanner userInput1 = new Scanner(System.in); 
             System.out.println("What would you like to do?");
             String userCommand = userInput1.nextLine();
+            
             // if else ladder for all commands
             if (userCommand.equals("enter")) {
                 Player.enter();
@@ -199,6 +208,7 @@ public class Game {
         if (Player.living == false) {
             System.out.println("You lost! Better luck next time.");
         }
+        // player won, congratulations message
         else if (Player.win == true) {
             System.out.println("Congratulations! You won the game.");
         }
