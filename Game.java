@@ -79,6 +79,13 @@ public class Game {
                 int userPotionChoice = UserInputPotion.nextInt();
                 Player.drink(Player.items.get(userPotionChoice));
             }
+            else if (userCommand.equals("examine")) {
+                Scanner UserInputExamine = new Scanner(System.in);
+                Player.checkItems();
+                System.out.println("What item do you want to examine? (Enter the number next to the item you want to examine.)");
+                int userExamineChoice = UserInputExamine.nextInt();
+                Player.examine(Player.items.get(userExamineChoice));
+            }
             else {
                 System.out.println("Please enter a valid command.");
             }

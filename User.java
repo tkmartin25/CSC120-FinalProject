@@ -420,8 +420,12 @@ public class User {
      * @param item to be examined
      */
     public void examine(Item item) {
-        // if item is in user's possession
-        System.out.println(item.name + ": " + item.description);
+        if (this.items.contains(item)) {
+            System.out.println(item.name + ": " + item.description);
+        }
+        else {
+            System.out.println("Pick an item that you have with you.");
+        }
     }
 
     /**
