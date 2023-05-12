@@ -138,8 +138,22 @@ public class User {
             if (this.Locate() == "Foyer") {
                 this.floor = 2;
                 this.house_x = 195;
-                this.house_y = 90;
-                System.out.println("You walked up the stairs to the second floor.");
+                this.house_y = 95;
+                System.out.println("You walked up the stairs to the second floor hallway.");
+            }
+            else if (this.Locate() == "Hallway") {
+                Scanner UserInputAttic = new Scanner(System.in);
+                System.out.println("Are you sure you want to go up? You won't be able to come back down if you choose to go up now. (Y or N)");
+                String UserInputAtticChoice = UserInputAttic.nextLine();
+                if (UserInputAtticChoice.equals("Y")) {
+                    this.floor = 3;
+                    this.house_x = 150;
+                    this.house_y = 100;
+                    System.out.println("You pulled the ceiling tab and climbed up to the attic.");
+                }
+                else {
+                    System.out.println("You decided against going up to the attic.");
+                }
             }
             else {
                 System.out.println("You can't go up from here.");
@@ -191,7 +205,7 @@ public class User {
             else if (this.Locate() == "Closet") {
                 this.house_x = 205;
                 this.house_y = 140;
-                System.out.println("You are now in the Kitchen.");
+                System.out.println("You are now in the kitchen.");
             }
             else {
                 System.out.println("You can't go to the right from here.");
@@ -207,7 +221,7 @@ public class User {
             else if (this.Locate() == "Kitchen") {
                 this.house_x = 275;
                 this.house_y = 160;
-                System.out.println("You are now in the first floor bathroom.");
+                System.out.println("You are now in a small room.");
             }
             else if (this.Locate() == "Living Room" && this.house_y <100) {
                 this.house_x = 60;
@@ -220,7 +234,7 @@ public class User {
         }
         // moving "down", towards the front of the house
         else if (direction == "s") {
-            if (this.Locate() == "Bathroom") {
+            if (this.Locate() == "Secret Room") {
                 this.house_x = 275;
                 this.house_y = 140;
                 System.out.println("You are now in the kitchen.");
@@ -297,7 +311,7 @@ public class User {
      * allows user to check what coordinates they are at
      */
     public void checkCoordinates() {
-        System.out.println(this.name + " is at (" + this.house_x + ", " + this.house_y + ").");
+        System.out.println(this.name + " is at (" + this.house_x + ", " + this.house_y + ", " + this.floor + ").");
     }
 
     /**
@@ -322,16 +336,24 @@ public class User {
                 return("Kitchen");
             }
             else if (this.house_x > 250 && this.house_x < 300 && this.house_y > 150 && this.house_y < 200) {
-                return("Bathroom");
+                return("Secret Room");
             }
             else if (this.house_x > 190 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
                 return("Closet");
             }
-            else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
+            else if (this.house_x > 120 && this.house_x < 190 && this.house_y > 100 && this.house_y < 150) {
                 return("Bathroom");
             }
             else {
                 return("First floor--somewhere.");
+            }
+        }
+        else if (this.floor == 2) {
+            if (this.house_x > 120 && this.house_x < 300 && this.house_y > 90 && this.house_y < 100) {
+                return("Hallway");
+            }
+            else {
+                return("Second floor.");
             }
         }
         else {
@@ -382,6 +404,10 @@ public class User {
         }
     }
 
+    /**
+     * accessor for player's favorite food
+     * @return favorite_thing
+     */
     public static String getfavorite_thing() {
         return favorite_thing;
     }
@@ -400,73 +426,71 @@ public class User {
         //System.out.println(this.name + " drank " + potion + ".");
     //}
 
-    public void playGame() {
-        Scanner UserInputName = new Scanner(System.in);
-        System.out.println("What is your name?");
-        String userName = UserInputName.nextLine();
+    // public void playGame() {
+    //     Scanner UserInputName = new Scanner(System.in);
+    //     System.out.println("What is your name?");
+    //     String userName = UserInputName.nextLine();
         
-        Scanner UserInputFavoriteThing = new Scanner(System.in);
-        System.out.println("What is your favorite food?");
-        String userFavoriteThing = UserInputFavoriteThing.nextLine();
+    //     Scanner UserInputFavoriteThing = new Scanner(System.in);
+    //     System.out.println("What is your favorite food?");
+    //     String userFavoriteThing = UserInputFavoriteThing.nextLine();
         
-        User Player = new User(userName, userFavoriteThing);
+    //     User Player = new User(userName, userFavoriteThing);
 
-        while (this.living == true) {
-            Scanner userInput1 = new Scanner(System.in); 
-            System.out.println("What would you like to do?");
-            String userCommand = userInput1.nextLine();
-            if (userCommand.equals("enter")) {
-                Player.enter();
-            }
-            else if (userCommand.equals("w")) {
-                Player.go("w");
-            }
-            else if (userCommand.equals("s")) {
-                Player.go("s");
-            }
-            else if (userCommand.equals("a")) {
-                Player.go("a");
-            }
-            else if (userCommand.equals("d")) {
-                Player.go("d");
-            }
-            else if (userCommand.equals("up")) {
-                Player.go("up");
-            }
-            else if (userCommand.equals("write")) {
-                Player.write();
-            }
-            else if (userCommand.equals("read")) {
-                Scanner UserInputpagenum = new Scanner(System.in);
-                System.out.println("What page would you like to read? (ex. 1, 2 etc.)");
-                int userpagenum = UserInputpagenum.nextInt();
-                Player.read(userpagenum);
-            }
-            else {
-                System.out.println("Please enter a valid command.");
-            }
-        }
-    }
+    //     while (this.living == true) {
+    //         Scanner userInput1 = new Scanner(System.in); 
+    //         System.out.println("What would you like to do?");
+    //         String userCommand = userInput1.nextLine();
+    //         if (userCommand.equals("enter")) {
+    //             Player.enter();
+    //         }
+    //         else if (userCommand.equals("w")) {
+    //             Player.go("w");
+    //         }
+    //         else if (userCommand.equals("s")) {
+    //             Player.go("s");
+    //         }
+    //         else if (userCommand.equals("a")) {
+    //             Player.go("a");
+    //         }
+    //         else if (userCommand.equals("d")) {
+    //             Player.go("d");
+    //         }
+    //         else if (userCommand.equals("up")) {
+    //             Player.go("up");
+    //         }
+    //         else if (userCommand.equals("write")) {
+    //             Player.write();
+    //         }
+    //         else if (userCommand.equals("read")) {
+    //             Scanner UserInputpagenum = new Scanner(System.in);
+    //             System.out.println("What page would you like to read? (ex. 1, 2 etc.)");
+    //             int userpagenum = UserInputpagenum.nextInt();
+    //             Player.read(userpagenum);
+    //         }
+    //         else {
+    //             System.out.println("Please enter a valid command.");
+    //         }
+    //     }
+    // }
 
     /** for testing */
     public static void main(String[] args) {
-        User Player = new User("Babby", "coconut ice cream");
-        Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
-        Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
-        Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
-        Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1);
-        Room Bathroom = new Room("Bathroom", 50, 50, 250, 300, 150, 200, 1);
-        Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1);
-        Room MasterBedroom = new Room("Master Bedroom", 120, 130, 0, 120, 0, 130, 2);
-        Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2);
-        Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2);
-        Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2);
-        Room Bedroom = new Room("Bedroom", 100, 90, 200, 300, 0, 90, 2);
-        Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
-        Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
-        Player.checkCoordinates();
-        Player.go("up");
-        Player.enter();
+        // Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
+        // Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
+        // Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
+        // Room Kitchen = new Room ("Kitchen", 100, 90, 200, 300, 60, 150, 1);
+        // Room SecretRoom = new Room("Secret Room", 50, 50, 250, 300, 150, 200, 1);
+        // Room Bathroom = new Room("Bathroom", 70, 50, 120, 200, 150, 200, 1);
+        // Room Closet = new Room("Closet", 10, 50, 190, 200, 100, 150, 1);
+        // Room MasterBedroom = new Room("Master Bedroom", 120, 130, 0, 120, 0, 130, 2);
+        // Room Office = new Room("Office", 80, 50, 120, 200, 100, 150, 2);
+        // Room MasterBathroom = new Room("Master Bathroom", 70, 20, 0, 70, 130, 150, 2);
+        // Room Closet2 = new Room("Master Closet", 50, 20, 70, 120, 130, 150, 2);
+        // Room Bedroom = new Room("Bedroom", 100, 90, 200, 300, 0, 90, 2);
+        // Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
+        // Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
+        // Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3);
         // User.checkCoordinates();
         // User.go("a");
         // User.go("w");
@@ -489,7 +513,7 @@ public class User {
         // Player.examine(potion2);
         // Player.write();
         // Player.read(1);
-        Player.playGame();
+        //Player.playGame();
      }
 
     }

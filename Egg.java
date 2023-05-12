@@ -5,11 +5,11 @@ public class Egg extends Character {
     }
 
     public void roll() {
-        if (User.Locate() == this.location.name) {
+        if (Player.Locate() == this.location.name) {
 
         }
         else if (User.Locate() != this.location.name) {
-            
+
         }
     }
     
