@@ -34,6 +34,10 @@ public class Item {
                 this.description = "A golden potion that is contained in a star-shaped jar. It smells of " + User.getfavorite_thing() + ".";
                 this.effect = 75;
             }
+            else if (name == "Maroon Potion") {
+                this.description = "A deep red potion that is contained in a thin jar. It smells metallic-like.";
+                this.effect = -75;
+            }
             else {
                 this.description = "An unknown potion.";
             }
