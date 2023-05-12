@@ -50,6 +50,10 @@ public class Game {
                 Player.go("up");
                 Player.changeEnergy(-5);
             }
+            else if (userCommand.equals("down")) {
+                Player.go("down");
+                Player.changeEnergy(-5);
+            }
             else if (userCommand.equals("write")) {
                 Player.write();
             }

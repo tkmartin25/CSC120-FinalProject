@@ -55,7 +55,7 @@ public class User {
         this.favorite_thing = favorite_thing;
         this.living = true;
         this.max_energy = 100;
-        this.current_energy = 10;
+        this.current_energy = max_energy;
         this.house_x = -1;
         this.house_y = -1;
         this.floor = -1;
@@ -156,7 +156,7 @@ public class User {
     * based on the direction north, south, east, or west, the bat moves coordinates by a unit of 1
     * @param direction for bat to walk in
     */
-    public void go(String direction){
+    public void go(String direction) {
         // formatting of user inputted direction
         direction = direction.toLowerCase();
         // moving up 1 floor
@@ -184,6 +184,7 @@ public class User {
             else {
                 System.out.println("You can't go up from here.");
             }
+        }
         // moving down 1 floor
         else if (direction == "down") {
             if (this.Locate() == "Hallway") {
@@ -218,6 +219,21 @@ public class User {
                 this.house_y = 110;
                 System.out.println("You are now in the living room.");
             }
+            else if (this.Locate() == "Hallway" && this.house_x < 200) {
+                this.house_x = 115;
+                this.house_y = 65;
+                System.out.println("You are now in the master bedroom.");
+            }
+            else if (this.Locate() == "Hallway" && this.house_x > 200) {
+                this.house_x = 160;
+                this.house_y = 95;
+                System.out.println("You moved to the other side of the hallway.");
+            }
+            else if (this.Locate() == "Master Bedroom" && this.house_x > 70) {
+                this.house_x = 35;
+                this.house_y = 65;
+                System.out.println("You moved to the other side of the master bedroom.");
+            }
             else {
                 System.out.println("You can't go to the left from here.");
             }
@@ -244,6 +260,21 @@ public class User {
                 this.house_y = 140;
                 System.out.println("You are now in the kitchen.");
             }
+            else if (this.Locate() == "Master Bedroom" && this.house_x < 70) {
+                this.house_x = 115;
+                this.house_y = 65;
+                System.out.println("You moved to the other side of the master bedroom.");
+            }
+            else if (this.Locate() == "Master Bedroom" && this.house_x > 70) {
+                this.house_x = 160;
+                this.house_y = 95;
+                System.out.println("You are now in the hallway.");
+            }
+            else if (this.Locate() == "Hallway" && this.house_x < 200) {
+                this.house_x = 250;
+                this.house_y = 95;
+                System.out.println("You moved to the other side of the hallway.");
+            }
             else {
                 System.out.println("You can't go to the right from here.");
             }
@@ -260,10 +291,35 @@ public class User {
                 this.house_y = 160;
                 System.out.println("You are now in a small room.");
             }
-            else if (this.Locate() == "Living Room" && this.house_y <100) {
+            else if (this.Locate() == "Living Room" && this.house_y < 100) {
                 this.house_x = 60;
                 this.house_y = 110;
                 System.out.println("You moved to the other side of the living room.");
+            }
+            else if (this.Locate() == "Master Bedroom" && this.house_x < 70) {
+                this.house_x = 35;
+                this.house_y = 140;
+                System.out.println("You are now in the master bathroom.");
+            }
+            else if (this.Locate() == "Master Bedroom" && this.house_x > 70) {
+                this.house_x = 95;
+                this.house_y = 140;
+                System.out.println("You are now in the closet.");
+            }
+            else if (this.Locate() == "Hallway" && this.house_x < 200) {
+                this.house_x = 160;
+                this.house_y = 125;
+                System.out.println("You are now in the office.");
+            }
+            else if (this.Locate() == "Hallway" && this.house_x > 200) {
+                this.house_x = 250;
+                this.house_y = 125;
+                System.out.println("You are now in the bathroom.");
+            }
+            else if (this.Locate() == "Bedroom") {
+                this.house_x = 250;
+                this.house_y = 95;
+                System.out.println("You are now in the hallway.");
             }
             else {
                 System.out.println("You can't go towards the back of the house from here.");
@@ -285,6 +341,31 @@ public class User {
                 this.house_x = 60;
                 this.house_y = 10;
                 System.out.println("You moved to the other side of the living room.");
+            }
+            else if (this.Locate() == "Master Bathroom") {
+                this.house_x = 35;
+                this.house_y = 65;
+                System.out.println("You are now in the master bedroom.");
+            }
+            else if (this.Locate() == "Closet" && this.floor == 2) {
+                this.house_x = 115;
+                this.house_y = 65;
+                System.out.println("You are now in the master bedroom.");
+            }
+            else if (this.Locate() == "Hallway" && this.house_x > 200) {
+                this.house_x = 250;
+                this.house_y = 45;
+                System.out.println("You are now in the bedroom.");
+            }
+            else if (this.Locate() == "Office") {
+                this.house_x = 160;
+                this.house_y = 95;
+                System.out.println("You are now in the hallway.");
+            }
+            else if (this.Locate() == "Bathroom" && this.floor == 2) {
+                this.house_x = 250;
+                this.house_y = 95;
+                System.out.println("You are now in the hallway.");
             }
             else {
                 System.out.println("You can't go towards the front of the house from here.");
@@ -387,6 +468,24 @@ public class User {
         else if (this.floor == 2) {
             if (this.house_x > 120 && this.house_x < 300 && this.house_y > 90 && this.house_y < 100) {
                 return("Hallway");
+            }
+            else if (this.house_x > 0 && this.house_x < 120 && this.house_y > 0 && this.house_y < 130) {
+                return("Master Bedroom");
+            }
+            else if (this.house_x > 0 && this.house_x < 70 && this.house_y > 130 && this.house_y < 150) {
+                return("Master Bathroom");
+            }
+            else if (this.house_x > 70 && this.house_x < 120 && this.house_y > 130 && this.house_y < 150) {
+                return("Closet");
+            }
+            else if (this.house_x > 120 && this.house_x < 200 && this.house_y > 100 && this.house_y < 150) {
+                return("Office");
+            }
+            else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 100 && this.house_y < 150) {
+                return("Bathroom");
+            }
+            else if (this.house_x > 200 && this.house_x < 300 && this.house_y > 0 && this.house_y < 90) {
+                return("Bedroom");
             }
             else {
                 return("Second floor.");
