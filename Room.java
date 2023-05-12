@@ -1,16 +1,25 @@
 public class Room {
 
+    /** name of room */
     String name;
+    /** total x 'width' of room */
     int width;
+    /** total y 'length' of room */
     int length;
+    /** relative to the house, the x coordinate the room starts at */
     int min_x;
+    /** relative to the house, the x coordinate the room ends at */
     int max_x;
+    /** relative to the house, the y coordinate the room starts at */
     int min_y;
+    /** relative to the house, the y coordinate the room ends at */
     int max_y;
+    /** which floor the room is on */
     int floor;
+    /** text describing the room */
     String description;
 
-    /** Default constructor
+    /** Room constructor
      * @param name
      * @param width
      * @param length
@@ -32,5 +41,4 @@ public class Room {
         this.floor = floor;
         this.description = description;
     }
-
 }
