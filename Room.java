@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+/** Room class */
 public class Room {
 
     /** name of room */
@@ -44,6 +45,7 @@ public class Room {
         this.max_y = max_y;
         this.floor = floor;
         this.description = description;
+        // kitchen is able to store potions
         if (this.name == "Kitchen") {
             this.Roomitems = new ArrayList<Item>();
         }
