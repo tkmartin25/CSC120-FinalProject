@@ -27,7 +27,6 @@ public class House {
     * builds house with predetermined rooms
     */
     public void buildHouse() {
-        House Haunted_house = new House();
         Room Foyer = new Room("Foyer", 80, 100, 120, 200, 0, 100, 1);
         Room LivingRoom = new Room("Living Room", 120, 150, 0, 120, 0, 150, 1);
         Room DiningRoom = new Room("Dining Room", 100, 60, 200, 300, 0, 60, 1);
@@ -43,7 +42,6 @@ public class House {
         Room Hallway = new Room("Hallway", 180, 10, 120, 300, 90, 100, 2);
         Room Bathroom2 = new Room("Bathroom", 180, 10, 120, 300, 90, 100, 2);
         Room Attic = new Room("Attic", 300, 150, 0, 300, 0, 150, 3);
-        Haunted_house.add();
     }
     
 

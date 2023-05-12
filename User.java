@@ -66,6 +66,7 @@ public class User {
             this.house_x = 160;
             this.house_y = 1;
             this.floor = 1;
+            this.track();
             System.out.println("You have entered the Haunted House.");
         }
         else {
@@ -256,6 +257,7 @@ public class User {
         else {
             throw new RuntimeException("Error: You must input one of the following four directions: 'up', 'down', 'left', or 'right'.");
         }
+        this.track();
     }
 
     /**
@@ -425,54 +427,6 @@ public class User {
     //public void drink(potion){
         //System.out.println(this.name + " drank " + potion + ".");
     //}
-
-    // public void playGame() {
-    //     Scanner UserInputName = new Scanner(System.in);
-    //     System.out.println("What is your name?");
-    //     String userName = UserInputName.nextLine();
-        
-    //     Scanner UserInputFavoriteThing = new Scanner(System.in);
-    //     System.out.println("What is your favorite food?");
-    //     String userFavoriteThing = UserInputFavoriteThing.nextLine();
-        
-    //     User Player = new User(userName, userFavoriteThing);
-
-    //     while (this.living == true) {
-    //         Scanner userInput1 = new Scanner(System.in); 
-    //         System.out.println("What would you like to do?");
-    //         String userCommand = userInput1.nextLine();
-    //         if (userCommand.equals("enter")) {
-    //             Player.enter();
-    //         }
-    //         else if (userCommand.equals("w")) {
-    //             Player.go("w");
-    //         }
-    //         else if (userCommand.equals("s")) {
-    //             Player.go("s");
-    //         }
-    //         else if (userCommand.equals("a")) {
-    //             Player.go("a");
-    //         }
-    //         else if (userCommand.equals("d")) {
-    //             Player.go("d");
-    //         }
-    //         else if (userCommand.equals("up")) {
-    //             Player.go("up");
-    //         }
-    //         else if (userCommand.equals("write")) {
-    //             Player.write();
-    //         }
-    //         else if (userCommand.equals("read")) {
-    //             Scanner UserInputpagenum = new Scanner(System.in);
-    //             System.out.println("What page would you like to read? (ex. 1, 2 etc.)");
-    //             int userpagenum = UserInputpagenum.nextInt();
-    //             Player.read(userpagenum);
-    //         }
-    //         else {
-    //             System.out.println("Please enter a valid command.");
-    //         }
-    //     }
-    // }
 
     /** for testing */
     public static void main(String[] args) {
