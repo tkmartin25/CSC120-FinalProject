@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+/** Lucretia class */
 public class Lucretia {
 
     /** Lucretia name */
@@ -32,7 +33,7 @@ public class Lucretia {
     }
 
     /**
-     * prints out message of Lucretia's attack
+     * prints out message of Lucretia's deadly attack
      */
     public void killMessage() {
         System.out.println("You have made Lucretia unbearably angry. She charges forward and puts a curse on you.");
@@ -54,6 +55,7 @@ public class Lucretia {
         System.out.println("Lucretia: Name the one of the statues you saw in the foyer.");
         String userAnswer1 = UserInputTest1.nextLine();
         userAnswer1 = userAnswer1.toLowerCase();
+        // user correct answer, 2 possible correct answers
         if (userAnswer1.contains("elephant")) {
             System.out.println("Lucretia: Good. The other two were ghost and ghoul.");
         }
@@ -63,6 +65,7 @@ public class Lucretia {
         else if (userAnswer1.contains("ghoul")) {
             System.out.println("Lucretia: Good. The other two were ghost and elephant.");
         }
+        // user incorrect answer
         else {
             System.out.println("Lucretia: That's incorrect. I'm not surprised but I am disappointed.");
             this.getAngry();
@@ -78,9 +81,11 @@ public class Lucretia {
         System.out.println("Lucretia: What kind of orchard did you see in the first floor closet painting? Just type the name of the fruit.");
         String userAnswer2 = UserInputTest2.nextLine();
         userAnswer2 = userAnswer2.toLowerCase();
+        // user correct answer
         if (userAnswer2.contains("lemon")) {
             System.out.println("Lucretia: Good. That's right. That was her favorite.");
         }
+        // user incorrect answer
         else {
             System.out.println("Lucretia: That's incorrect. You should've thought twice before coming in here.");
             this.getAngry();
@@ -100,10 +105,12 @@ public class Lucretia {
         System.out.println("Lucretia: Give me the initial of the doll you spotted in the bedroom.");
         String userAnswer3 = UserInputTest3.nextLine();
         userAnswer3 = userAnswer3.toLowerCase();
+        // user correct answer
         if (userAnswer3.equals("e")) {
             System.out.println("Lucretia: Most impressive. You've succeeded in appeasing my concerns about your worth.");
             User.win();
         }
+        //third question is wrong, game ends
         else {
             System.out.println("Lucretia: That's incorrect. You don't deserve to be here.");
             this.getAngry();
